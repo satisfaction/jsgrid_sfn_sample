@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>JQgrid and Feedback Widget test</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="ui.jqgrid.css" />
+	
+	<script src="jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="grid.locale-en.js" type="text/javascript"></script>
+	<script src="jquery.jqGrid.min.js" type="text/javascript"></script>
+	
+</head>
+<body>
+  <table id="list4"></table>
+  <script type="text/javascript" charset="utf-8">
+    jQuery("#list4").jqGrid({
+      datatype: "local",
+      height: 250,
+        colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+        colModel:[
+          {name:'id',index:'id', width:60, sorttype:"int"},
+          {name:'invdate',index:'invdate', width:90, sorttype:"date"},
+          {name:'name',index:'name', width:100},
+          {name:'amount',index:'amount', width:80, align:"right",sorttype:"float"},
+          {name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},		
+          {name:'total',index:'total', width:80,align:"right",sorttype:"float"},		
+          {name:'note',index:'note', width:150, sortable:false}		
+        ],
+        multiselect: true,
+        caption: "Manipulating Array Data"
+    });
+    var mydata = [
+        {id:"1",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+        {id:"2",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+        {id:"3",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+        {id:"4",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+        {id:"5",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+        {id:"6",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+        {id:"7",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
+        {id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+        {id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
+    ];
+    for(var i=0;i<=mydata.length;i++)
+      jQuery("#list4").jqGrid('addRowData',i+1,mydata[i]);
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    var is_ssl = ("https:" == document.location.protocol);
+    var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+    document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    var feedback_widget_options = {};
+    feedback_widget_options.display = "overlay";  
+    feedback_widget_options.company = "emerald_city";
+    feedback_widget_options.placement = "left";
+    feedback_widget_options.color = "#222";
+    feedback_widget_options.style = "idea";
+    var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+  </script>
+</body>
+</html>
